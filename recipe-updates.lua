@@ -23,7 +23,7 @@ util.add_ingredient("uranium-processing", "salt", 1)
 if mods.Krastorio2 or util.is_foundry() then
   util.replace_some_ingredient("steel-plate", "iron-plate", 1, "salt", 1)
 end
-util.add_ingredient("kr-biomass-growing", "salt", 1)
+util.add_ingredient("kr-biomass", "salt", 1)
 util.add_ingredient("kr-energy-storage", "ferric-chloride", 10)
 
 -- Space Exploration
@@ -39,16 +39,16 @@ if not mods.Krastorio2 then
   util.add_product("se-iridium-powder", {type="fluid", name="chlorine", amount=19, catalyst_amount=19})
 end
 
-util.replace_some_ingredient("se-vitamelange-bloom", "sand", 10, "salt", 1)
+util.replace_some_ingredient("se-vitamelange-bloom", mods["Krastorio2"] and "kr-sand" or "sand", 10, "salt", 1)
 util.add_ingredient("se-nutrient-gel", "salt", 1)
 util.add_ingredient("se-vitalic-epoxy", "epoxy", 16)
 
 util.multiply_recipe("se-space-water", 10)
 util.replace_some_ingredient("se-space-water", "water", 10, "salt", 1)
-util.add_ingredient("se-bio-sludge-decontamination", "chlorine", 1)
+util.add_ingredient("se-bio-sludge-decontamination", mods.Krastorio2 and "kr-chloring" or "chlorine", 1)
 util.add_ingredient("se-bio-electrics-data", "salt", 1)
 
-util.add_ingredient("se-holmium-chloride", "hydrogen-chloride", 2)
+util.add_ingredient("se-holmium-chloride", mods["Krastorio2"] and "kr-hydrogen-chloride" or "hydrogen-chloride", 2)
 util.replace_some_ingredient("se-space-coolant", "copper-plate", 1, "salt", 1)
 util.replace_some_ingredient("se-space-coolant-cryonite", "copper-plate", 1, "salt", 1)
 

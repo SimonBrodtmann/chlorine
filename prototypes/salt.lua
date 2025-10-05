@@ -1,5 +1,4 @@
 local resource_autoplace = require('resource-autoplace');
-local noise = require('noise');
 
 local futil = require("util");
 local util = require("data-util");
@@ -13,7 +12,6 @@ particle.name = "salt-particle"
 for i, picture in ipairs(particle.pictures) do
   local tint = {r=1, g=1, b=1, a=0}
   picture.tint = tint
-  picture.hr_version.tint = tint
 end
 
 data:extend({particle})
@@ -25,10 +23,6 @@ data:extend({
     name = "salt",
     richness = true,
     order = "b-e"
-	},
-	{
-    type = "noise-layer",
-    name = "salt"
 	},
 	{
     type = "resource",
@@ -64,20 +58,12 @@ data:extend({
         {
           sheet =
           {
-      filename = "__bzchlorine__/graphics/entity/ores/salt.png",
-      priority = "extra-high",
-      size = 64,
-      frame_count = 8,
-      variation_count = 8,
-      hr_version =
-      {
-      filename = "__bzchlorine__/graphics/entity/ores/hr-salt.png",
-        priority = "extra-high",
-        size = 128,
-        frame_count = 8,
-        variation_count = 8,
-        scale = 0.5
-      }
+            filename = "__bzchlorine__/graphics/entity/ores/hr-salt.png",
+            priority = "extra-high",
+            size = 128,
+            frame_count = 8,
+            variation_count = 8,
+            scale = 0.5
           }
     },
   },
@@ -86,24 +72,24 @@ data:extend({
 local richness = data.raw.resource["salt"].autoplace.richness_expression  
 local probability = data.raw.resource["salt"].autoplace.probability_expression  
 
-if not util.me.starting_patch() then
-  -- Modify salt autoplace richness: 
-  -- After 500 tiles it's standard
-  -- After 250 tiles it scales up
-  data.raw.resource["salt"].autoplace.richness_expression = 
-    richness * noise.if_else_chain(
-        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(500)),
-        (noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")) - 275)/475,
-        1)
-
-  data.raw.resource["salt"].autoplace.probability_expression = 
-    probability * noise.if_else_chain(
-        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(249)),
-        0,
-        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(250)),
-        0.3,
-        1)
-end
+--if not util.me.starting_patch() then
+--  -- Modify salt autoplace richness:
+--  -- After 500 tiles it's standard
+--  -- After 250 tiles it scales up
+--  data.raw.resource["salt"].autoplace.richness_expression =
+--    richness * noise.if_else_chain(
+--        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(500)),
+--        (noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")) - 275)/475,
+--        1)
+--
+--  data.raw.resource["salt"].autoplace.probability_expression =
+--    probability * noise.if_else_chain(
+--        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(249)),
+--        0,
+--        noise.less_than(noise.distance_from(noise.var("x"), noise.var("y"), noise.var("starting_positions")), noise.to_noise_expression(250)),
+--        0.3,
+--        1)
+--end
 
 end
 data:extend({
@@ -113,20 +99,20 @@ data:extend({
     icon_size = 128,
     icon = "__bzchlorine__/graphics/icons/salt.png",
     pictures = {
-      {filename="__bzchlorine__/graphics/icons/salt.png",   size=128, scale=0.125},
-      {filename="__bzchlorine__/graphics/icons/salt-1.png", size=128, scale=0.125},
-      {filename="__bzchlorine__/graphics/icons/salt-2.png", size=128, scale=0.125},
-      {filename="__bzchlorine__/graphics/icons/salt-3.png", size=128, scale=0.125},
-      {filename="__bzchlorine__/graphics/icons/salt-4.png", size=128, scale=0.125},
+      {filename="__bzchlorine__/graphics/icons/salt.png",   size=128, scale=0.25},
+      {filename="__bzchlorine__/graphics/icons/salt-1.png", size=128, scale=0.25},
+      {filename="__bzchlorine__/graphics/icons/salt-2.png", size=128, scale=0.25},
+      {filename="__bzchlorine__/graphics/icons/salt-3.png", size=128, scale=0.25},
+      {filename="__bzchlorine__/graphics/icons/salt-4.png", size=128, scale=0.25},
     },
     subgroup = "raw-resource",
     order = "t-c-a",
-    stack_size = util.get_stack_size(50)
+    stack_size = 50
   },
   {
     type = "recipe",
     name = "salt",
-    result = "salt",
+    results = {{type="item", name="salt", amount=1}},
     ingredients = {{type="fluid", name="water", amount=100}},
     enabled = not not mods["aai-industry"],
     category = "crafting-with-fluid",
@@ -138,10 +124,10 @@ if mods.Krastorio2 then
     {
       type = "recipe",
       name = "salt-filtration",
-      result = "salt",
+      results = {{type="item", name="salt", amount=1}},
       ingredients = {{type="fluid", name="water", amount=100}},
       enabled = false,
-      category = mods.Krastorio2 and "fluid-filtration",
+      category = mods.Krastorio2 and "kr-fluid-filtration",
       energy_required = 0.4,
     },
   })

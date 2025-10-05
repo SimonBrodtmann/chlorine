@@ -14,6 +14,7 @@ See changelog.txt
 ## Thanks to 
 - [Benjah-bmm27](https://commons.wikimedia.org/wiki/File:Vinyl-chloride-3D-vdW.png) (vinyl chloride icon)
 - [snouz](https://github.com/snouz) (logo inspiration)
+- [cackling fiend](https://mods.factorio.com/user/cackling.fiend) (Update to 2.0)
 
 ### Compatibility
 - [nihilistzsche](https://github.com/nihilistzsche)

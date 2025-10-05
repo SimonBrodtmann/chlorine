@@ -1,10 +1,10 @@
 local util = require("data-util");
 
-if mods.bobelectronics or mods.MDbobelectronics then 
+if mods.bobelectronics or mods.MDbobelectronics or mods.MDbobelectronics2 then
 
   -- FeCL3 is now anhydrous, so hydrate it for bob
   util.remove_ingredient("ferric-chloride-solution", "iron-ore")
-  util.remove_ingredient("ferric-chloride-solution", "hydrogen-chloride")
+  util.remove_ingredient("ferric-chloride-solution", mods["Krastorio2"] and "kr-hydrogen-chloride" or "hydrogen-chloride")
   util.add_ingredient("ferric-chloride-solution", "ferric-chloride", 5)
   util.add_ingredient("ferric-chloride-solution", "water", 50)
 

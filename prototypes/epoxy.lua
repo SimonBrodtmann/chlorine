@@ -1,11 +1,13 @@
 local util = require("data-util");
 
+local cl_name = mods.Krastorio2 and "kr-chlorine" or cl_name
+
 data:extend({
   {
     type = "fluid",
     name = "epoxy",
     default_temperature = 25,
-    heat_capacity = "0.1KJ",
+    heat_capacity = "0.1kJ",
     base_color = {r=0.90, g=0.95, b=0.90},
     flow_color = {r=0.90, g=1.00, b=0.90},
     icon = "__bzchlorine__/graphics/icons/epoxy.png",
@@ -20,11 +22,11 @@ data:extend({
     name = "epoxy",
     results = {
       {type="fluid", name="epoxy", amount=10},
-      {"salt", 1},
+      {type="item", name="salt", amount=1},
     },
     main_product = "epoxy",
     ingredients = {
-      {type="fluid", name="chlorine", amount=10},
+      {type="fluid", name=cl_name, amount=10},
       {type="fluid", name="petroleum-gas", amount=10},
     },
     enabled = false,
